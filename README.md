@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Burger builder sample project
+
+Create a burger dynamicaly with react and add ingredients to it.
+
 ## Available Scripts
 
 In the project directory, you can run:
