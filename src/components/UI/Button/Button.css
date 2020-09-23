@@ -1,0 +1,37 @@
+.Button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+}
+.Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+}
+.Button:hover {
+    opacity: 0.75
+}
+
+.Primary {
+    font-weight: bold;
+}
+
+.Secondary {
+    font: inherit;
+    padding: 5px;
+    margin: 5px;
+    font-size: 15px;
+}
+
+.Disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.Success {
+    color: #5C9210;
+}
