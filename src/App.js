@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Layout from './components/Layout/Layout'
-import BurgerBuilder from './containers/BurgerBuilder'
+import Layout from "./components/Layout/Layout";
+import BurgerBuilder from "./containers/BurgerBuilder";
 function App() {
   return (
     <div>
-     <Layout>
-       <BurgerBuilder />
-     </Layout>
+      <Layout>
+        <BurgerBuilder />
+      </Layout>
     </div>
   );
 }
