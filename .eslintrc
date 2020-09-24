@@ -1,0 +1,34 @@
+{
+        "extends": [
+            "react-app",
+            "eslint:recommended",
+            "plugin:react/recommended"
+        ],
+      "rules": {
+        "arrow-parens": "off",
+        "no-console": "warn",
+        "import/no-extraneous-dependencies": "off"
+      },
+      "overrides": [
+        {
+          "files": ["**/*.ts?(x)"],
+          "rules": {
+            "additional-typescript-only-rule": "warn"
+          }
+        }
+      ],
+      "settings": {
+        "import/ignore": [
+          "node_modules",
+          ".(scss|less|css|svg)$"
+        ],
+        "import/parser": "babel-eslint",
+        "import/resolve": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".json"
+          ]
+        }
+    }
+  }

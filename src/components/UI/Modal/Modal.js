@@ -1,7 +1,8 @@
 import React from "react";
-
+import PropTypes from "prop-types";
+// CSS
 import classes from "./Modal.css";
-
+// Components
 import Backdrop from "../Backdrop/Backdrop";
 
 const Modal = ({ children, show, closeModal }) => (
@@ -25,5 +26,11 @@ const Modal = ({ children, show, closeModal }) => (
     </div>
   </>
 );
+
+Modal.propTypes = {
+  children: PropTypes.node,
+  closeModal: PropTypes.func,
+  show: PropTypes.bool,
+}
 
 export default Modal;

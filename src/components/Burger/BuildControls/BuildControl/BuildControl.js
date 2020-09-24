@@ -1,8 +1,9 @@
 import React from "react";
-
+import PropTypes from 'prop-types';
+//CSS
 import classes from "./BuildControl.css";
 
-const BuilControl = ({
+const BuildControl = ({
   label,
   ingredientAdded,
   ingredientRemoved,
@@ -23,4 +24,11 @@ const BuilControl = ({
   </div>
 );
 
-export default BuilControl;
+BuildControl.propTypes = {
+  disabled: PropTypes.bool,
+  ingredientAdded: PropTypes.func,
+  ingredientRemoved: PropTypes.func,
+  label: PropTypes.string,
+}
+
+export default BuildControl;

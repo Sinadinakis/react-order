@@ -30,7 +30,10 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-    children: PropTypes.node
+    btnState: PropTypes.string,
+    btnType: PropTypes.string,
+    children: PropTypes.node,
+    onClick: PropTypes.func,
 }
 
 export default Button;
