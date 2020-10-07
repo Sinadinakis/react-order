@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import axios from '../axios-order';
 
-// components
+// Components
 import Burger from "../components/Burger/Burger";
 import BuildControls from "../components/Burger/BuildControls/BuildControls";
+import IngredientSummary from "../components/Burger/IngredientSummary/IngredientSummary";
+import Spinner from '../components/UI/Spinner/Spinner';
+import withErrorHandler from '../hoc/withErroHandler/withErrorHandler';
 
 // UI
 import Modal from "../components/UI/Modal/Modal";
@@ -24,28 +28,12 @@ const INITIAL_STATE = {
     },
 };
 
-const ingredientSummary = (ingredients) => (
-    <ul>
-        {Object.keys(ingredients)
-            .map((item) => (
-                <li
-                    key={item}
-                    style={{
-                        textTransform: "capitalize",
-                        fontWeight: "bold",
-                    }}
-                >
-                    {item} : {ingredients[item]}
-                </li>
-            ))}
-    </ul>
-);
-
 const BurgerBuilder = () => {
     const [state, setState] = useState(INITIAL_STATE);
     const [totalPrice, setTotalPrice] = useState(5);
     const [purchase, setPurchase] = useState(false);
     const [modal, setModal] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const addIngredientHandler = (type) => {
         const updateCount = state.ingredients[type] + 1;
@@ -95,19 +83,39 @@ const BurgerBuilder = () => {
     const modalCloseHandler = () => setModal(false);
 
     const purchaseContinueHandler = () => {
-        alert('Your purchase is succesful');
-        setModal(false)
+        setLoading(true);
+        const order = {
+            ingredients: state.ingredients,
+            price: totalPrice,
+            customer: {
+                name: 'Manolis',
+                email: 'test@gmail.com'
+            },
+            deliverMethod: 'fastest'
+        }
+        axios.post('/orders.json', order)
+            .then(res => { 
+                setLoading(false) 
+                setModal(false)
+            })
+            .catch(error => {
+                setLoading(false)
+                setModal(false)
+            })
     }
 
     return (
         <>
             <Modal show={modal} closeModal={modalCloseHandler}>
-                <p>Your Ingredient Summart: </p>
-                {ingredientSummary(state.ingredients)}
-                <p>Total Price: {totalPrice}</p>
-                <p>Continue to Checkout</p>
-                <Button btnType="secondary" onClick={modalCloseHandler}>Cancel</Button>
-                <Button btnState="success" onClick={purchaseContinueHandler}>CONTINUE</Button>
+                {!loading ? (
+                    <>
+                        <p>Your Ingredient Summart: </p>
+                        <IngredientSummary ingredients={state.ingredients} totalPrice={totalPrice} />
+                        <p>Continue to Checkout</p>
+                        <Button btnType="secondary" onClick={modalCloseHandler}>Cancel</Button>
+                        <Button btnState="success" onClick={purchaseContinueHandler}>CONTINUE</Button>
+                    </>)
+                    : <Spinner />}
             </Modal>
             <Burger ingredients={state.ingredients} />
             <BuildControls
@@ -122,4 +130,4 @@ const BurgerBuilder = () => {
     );
 };
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder);
