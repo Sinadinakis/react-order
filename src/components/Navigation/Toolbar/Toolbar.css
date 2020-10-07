@@ -7,7 +7,6 @@
     background-color: #703B09;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
     align-items: center;
     box-sizing: boarder-box;
     z-index: 90;
@@ -15,4 +14,14 @@
 
 .Toolbar nav {
     height: 100%;
+}
+
+.DesktopOnly {
+    display: none;
+}
+
+@media (min-width: 500px) {
+    .DesktopOnly {
+        display: block
+    }
 }
